@@ -1,0 +1,131 @@
+
+.calendar-container {
+  display: flex;
+  align-items: start;
+
+  .calendar-grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    text-align: center;
+    font-size: .875rem;
+    position: relative;
+    outline: none !important;
+
+    .calendar-month {
+      position: absolute;
+      font-weight: 700;
+      top: -10px;
+      width: 100%;
+    }
+
+    &.is-gregorian {
+      .calendar-cell {
+        &.is-selected-from {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+
+        &.is-selected-to {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+    }
+
+    &.is-jalali {
+      .calendar-cell {
+        &.is-selected-from {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+
+        &.is-selected-to {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+    }
+
+    & > span {
+      flex: 0 0 12.5%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid transparent;
+
+      &:before {
+        content: "";
+        float: left;
+        padding-top: 100%;
+        display: block;
+      }
+    }
+
+    .calendar-cell {
+      border-radius: 5px;
+      cursor: pointer;
+      position: relative;
+      outline: none !important;
+      margin-bottom: 2px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      line-height: 1.35;
+      transition: all 0.3s;
+
+      &:hover {
+        border-color: currentColor;
+      }
+
+      &:after {
+        position: absolute;
+        content: "";
+        left: -2px;
+        right: -2px;
+        top: -2px;
+        bottom: -2px;
+      }
+
+      &.is-disabled {
+        color: #BEC6CC !important;
+        cursor: default !important;
+        border-color: transparent !important;
+      }
+
+      &.is-today {
+        border: 1px solid #BEC6CC;
+      }
+
+      &.is-selected {
+        background-color: currentColor;
+      }
+
+      &.in-range:after {
+        background-color: currentColor;
+        opacity: 0.1;
+      }
+    }
+  }
+}
+
+.date-picker-arrows {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  img {
+    cursor: pointer;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .4s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import JalaliGregorianDatePicker from "./components/JalaliGregorianDatePicker.jsx";
+import {forwardRef, useEffect, useRef, useState} from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [date, setDate] = useState(null)
+    const [isg, setisg] = useState(true)
+    const inputRef = useRef(null)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const Inp = forwardRef(function Input (props, ref) {
+        return <input ref={ref} {...props} type="text" value="hello"/>
+    })
+    return (
+        <div style={{width: '600px'}}>
+            <div onClick={() => setisg(!isg)}>ddd</div>
+            <JalaliGregorianDatePicker
+                secondCalendar
+                secondDate
+                isRange
+                isGregorian={isg}
+                onInput={setDate}
+                value={date}
+                CustomInput={Inp}
+            />
+            {date}
+        </div>
+    )
 }
 
 export default App
