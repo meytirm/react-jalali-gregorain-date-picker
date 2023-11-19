@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   build: {
     lib: {
-      entry: path.resolve("src", 'src/components/index.jsx'),
+      entry: path.resolve(__dirname, 'src/components/JalaliGregorianDatePicker.jsx'),
       name: 'react-jalali-gregorian-date-picker',
       fileName: (format) => `react-jalali-gregorian-date-picker.${format}.js`
     },
