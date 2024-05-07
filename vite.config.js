@@ -1,22 +1,29 @@
-import path from 'path'
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+/// <reference types="vite/client" />
+
+import {defineConfig} from 'vite'
+import react from '@vitejs/plugin-react-swc'
+import {resolve} from 'path'
+import dts from 'vite-plugin-dts'
+import {libInjectCss} from "vite-plugin-lib-inject-css";
 
 export default defineConfig({
-  build: {
-    lib: {
-      entry: path.resolve(__dirname, 'src/components/JalaliGregorianDatePicker.jsx'),
-      name: 'react-jalali-gregorian-date-picker',
-      fileName: (format) => `react-jalali-gregorian-date-picker.${format}.js`
+    build: {
+        lib: {
+            entry: resolve(__dirname, 'index.ts'),
+            name: 'react-jalali-gregorian-date-picker',
+            fileName: (format) => `index.${format}.js`
+        },
+        rollupOptions: {
+            external: ['react', 'react-dom'],
+            output: {
+                globals: {
+                    react: 'React',
+                    'react-dom': 'ReactDOM'
+                }
+            }
+        },
+        sourcemap: true,
+        emptyOutDir: true,
     },
-    rollupOptions: {
-      external: ['react', 'react-dom'],
-      output: {
-        globals: {
-          react: 'React'
-        }
-      }
-    }
-  },
-  plugins: [react()]
+    plugins: [react(), dts(), libInjectCss()],
 })

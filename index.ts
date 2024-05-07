@@ -1,0 +1,1 @@
+export { JalaliGregorianDatePicker } from './src/components/JalaliGregorianDatePicker/'
