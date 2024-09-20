@@ -9,8 +9,9 @@ function CalendarArrows() {
 
     const date = moment(calendar.inputDate).format('YYYY-MM-DD')
     const momentDate = moment(date)
-    const currentMonthName = momentDate.clone().locale(calendar.isJalali ? 'fa' : 'en')
-        .format(calendar.isJalali ? 'jMMMM' : 'MMMM')
+    const momentDateCloned = momentDate.clone().locale(calendar.isJalali ? 'fa' : 'en')
+    const currentMonthName = momentDateCloned.format(calendar.isJalali ? 'jMMMM' : 'MMMM')
+    const currentYearName = momentDateCloned.format(calendar.isJalali ? 'jYYYY' : 'YYYY')
 
     function handleMonth(action: 'next' | 'prev') {
         let handledMonth
@@ -27,7 +28,10 @@ function CalendarArrows() {
     return (
         <div className="date-picker__arrows">
             <img alt={calendar.isJalali ? 'next' : 'prev'} src={arrowLeft} width="20px" onClick={() => handleMonth(calendar.isJalali ? 'next' : 'prev')}/>
-            <div>{currentMonthName}</div>
+            <div className="date-picker__current-date-info">
+                <div>{currentMonthName}</div>
+                <div>{currentYearName}</div>
+            </div>
             <img alt={calendar.isJalali ? 'prev' : 'next'} src={arrowRight} width="20px" onClick={() => handleMonth(calendar.isJalali ? 'prev' : 'next')}/>
         </div>
     )
