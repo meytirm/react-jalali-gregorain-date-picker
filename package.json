@@ -1,7 +1,7 @@
 {
   "name": "react-jalali-gregorian-date-picker",
   "private": false,
-  "version": "1.0.5",
+  "version": "1.0.6",
   "type": "module",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
